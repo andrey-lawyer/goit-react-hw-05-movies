@@ -19,7 +19,7 @@ const MovieDetails = () => {
         Notiflix.Notify.failure('Something went wrong...');
       });
   }, [movieId]);
-  const { newGenres, id, title, overview, imageMovie, userScore } = infoMovie;
+  const { newGenres, title, overview, imageMovie, userScore } = infoMovie;
   const location = useLocation();
 
   const [locationUser, setLocationUser] = useState('/');
