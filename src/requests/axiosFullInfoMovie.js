@@ -8,7 +8,6 @@ export function axiosFullInfoMovie(id) {
     .then(promise => {
       const {
         genres,
-        homepage,
         id,
         title,
         overview,
