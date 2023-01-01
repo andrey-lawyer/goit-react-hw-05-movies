@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+export const BlockForm = styled.div`
+  position: relative;
+`;
 export const SearchForm = styled.form`
   display: flex;
   align-items: center;
@@ -9,8 +12,8 @@ export const SearchForm = styled.form`
   border-radius: 3px;
   overflow: hidden;
   position: absolute;
-  top: 28px;
-  left: 500px;
+  top: -60px;
+  left: 350px;
   z-index: 999999;
 `;
 export const SearchFormButton = styled.button`

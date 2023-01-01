@@ -6,6 +6,7 @@ import {
   SearchFormButton,
   SearchFormInput,
   SearchFormButtonLabel,
+  BlockForm,
 } from './FormMovies.Styled';
 export const FormMovies = ({ onSubmit }) => {
   const [searchName, setSearchName] = useState('');
@@ -26,19 +27,21 @@ export const FormMovies = ({ onSubmit }) => {
     setSearchName('');
   };
   return (
-    <SearchForm onSubmit={handleSubmit}>
-      <SearchFormButton type="submit">
-        <SearchFormButtonLabel>Search</SearchFormButtonLabel>
-      </SearchFormButton>
-      <SearchFormInput
-        type="text"
-        autoComplete="off"
-        autoFocus
-        placeholder="Search movies"
-        value={searchName}
-        onChange={handleNameChange}
-      />
-    </SearchForm>
+    <BlockForm>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormButton type="submit">
+          <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+        </SearchFormButton>
+        <SearchFormInput
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search movies"
+          value={searchName}
+          onChange={handleNameChange}
+        />
+      </SearchForm>
+    </BlockForm>
   );
 };
 
