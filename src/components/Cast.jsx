@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { axiosActorsMovie } from '../requests/axiosActorsMovie';
 import { GalleryCast, NameActor, ActorItem } from './Cast.Styled';
+import { Message } from './Reviews.Styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -19,7 +20,7 @@ const Cast = () => {
 
   return (
     <>
-      {infoActors.length > 0 && (
+      {infoActors.length > 0 ? (
         <GalleryCast>
           {infoActors.map(({ id, name, character, profile_path }) => (
             <ActorItem key={id}>
@@ -37,6 +38,8 @@ const Cast = () => {
             </ActorItem>
           ))}
         </GalleryCast>
+      ) : (
+        <Message> We do not have any actors for this movie</Message>
       )}
     </>
   );
