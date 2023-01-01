@@ -28,7 +28,7 @@ export function axiosFullInfoMovie(id) {
         'original',
       ];
       const base_url = 'http://image.tmdb.org/t/p/';
-      const imageMovie = base_url + poster_sizes[4] + poster_path;
+      const imageMovie = base_url + poster_sizes[3] + poster_path;
       return {
         newGenres,
         id,

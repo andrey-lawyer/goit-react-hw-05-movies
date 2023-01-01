@@ -1,5 +1,15 @@
 import Notiflix from 'notiflix';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import {
+  BlockFlexOne,
+  InfoFilm,
+  BlockInfoFilm,
+  NavBack,
+  BlockInfoToo,
+  Information,
+  NavCastReviews,
+  TitleFilm,
+} from './MovieDetails.Styled';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import React, { useState, useEffect, Suspense } from 'react';
 import { axiosFullInfoMovie } from '../requests/axiosFullInfoMovie';
@@ -44,18 +54,29 @@ const MovieDetails = () => {
         />
       ) : (
         <main>
-          <h1>{title}</h1>
-          <Link to={locationUser}> Go Back</Link>
-          <img src={imageMovie} alt={imageMovie} />
-          <p>User Score</p>
-          <span>{userScore}%</span>
-          <p>Overview</p>
-          <span>{overview}</span>
-          <p>Genres</p>
-          <span>{newGenres}</span>
-          <p>Additional information</p>
-          <Link to="cast">Cast</Link>
-          <Link to="reviews">Reviews</Link>
+          <NavBack to={locationUser}>{'\u261A'} Go Back</NavBack>
+          <BlockFlexOne>
+            <img src={imageMovie} alt={imageMovie} />
+            <BlockInfoFilm>
+              <TitleFilm>{title}</TitleFilm>
+              <InfoFilm>User Score {userScore}%</InfoFilm>
+              <h2>Overview</h2>
+              <InfoFilm>{overview}</InfoFilm>
+              <h2>Genres</h2>
+              <InfoFilm>{newGenres}</InfoFilm>
+            </BlockInfoFilm>
+          </BlockFlexOne>
+          <BlockInfoToo>
+            <Information>Additional information</Information>
+            <ul>
+              <li>
+                <NavCastReviews to="cast">Cast</NavCastReviews>
+              </li>
+              <li>
+                <NavCastReviews to="reviews">Reviews</NavCastReviews>
+              </li>
+            </ul>
+          </BlockInfoToo>
           <Suspense fallback={null}>
             <Outlet />
           </Suspense>

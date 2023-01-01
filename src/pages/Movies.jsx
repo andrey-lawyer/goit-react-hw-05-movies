@@ -43,7 +43,6 @@ const Movies = () => {
   }, [navigate, searchName]);
   return (
     <main>
-      <h1>Movies</h1>
       <FormMovies onSubmit={handleFormSubmit} />
       {isLoading ? (
         <RotatingLines

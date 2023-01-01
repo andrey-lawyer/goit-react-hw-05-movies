@@ -27,7 +27,7 @@ export function axiosActorsMovie(id) {
       const newActors = actors.map(info => ({
         ...info,
         profile_path: info.profile_path
-          ? base_url + poster_sizes[0] + info.profile_path
+          ? base_url + poster_sizes[1] + info.profile_path
           : null,
       }));
       return newActors;

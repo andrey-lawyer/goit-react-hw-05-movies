@@ -2,6 +2,7 @@ import Notiflix from 'notiflix';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { axiosActorsMovie } from '../requests/axiosActorsMovie';
+import { GalleryCast, NameActor, ActorItem } from './Cast.Styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -19,23 +20,23 @@ const Cast = () => {
   return (
     <>
       {infoActors.length > 0 && (
-        <ul>
+        <GalleryCast>
           {infoActors.map(({ id, name, character, profile_path }) => (
-            <li key={id}>
+            <ActorItem key={id}>
               {profile_path ? (
                 <img src={profile_path} alt={name} />
               ) : (
                 <img
-                  src=" https://cdn.pixabay.com/photo/2016/09/14/08/18/film-1668918_1280.jpg"
+                  src=" http://tinleychamber.org/wp-content/uploads/2019/01/no-image-available.png"
                   alt={name}
-                  style={{ width: '92px' }}
+                  style={{ width: '154px', height: '231px' }}
                 />
               )}
-              <p>{name}</p>
+              <NameActor>{name}</NameActor>
               <p> Character: {character}</p>
-            </li>
+            </ActorItem>
           ))}
-        </ul>
+        </GalleryCast>
       )}
     </>
   );

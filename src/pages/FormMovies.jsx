@@ -1,5 +1,12 @@
 import Notiflix from 'notiflix';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import {
+  SearchForm,
+  SearchFormButton,
+  SearchFormInput,
+  SearchFormButtonLabel,
+} from './FormMovies.Styled';
 export const FormMovies = ({ onSubmit }) => {
   const [searchName, setSearchName] = useState('');
 
@@ -19,9 +26,11 @@ export const FormMovies = ({ onSubmit }) => {
     setSearchName('');
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <button type="submit">Search</button>
-      <input
+    <SearchForm onSubmit={handleSubmit}>
+      <SearchFormButton type="submit">
+        <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+      </SearchFormButton>
+      <SearchFormInput
         type="text"
         autoComplete="off"
         autoFocus
@@ -29,6 +38,10 @@ export const FormMovies = ({ onSubmit }) => {
         value={searchName}
         onChange={handleNameChange}
       />
-    </form>
+    </SearchForm>
   );
+};
+
+FormMovies.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

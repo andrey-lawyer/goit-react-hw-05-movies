@@ -1,20 +1,30 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { NavItem } from './ListMovies.Styled';
 export const ListSearchMovies = ({ movies }) => {
   const location = useLocation();
   return (
     <>
-      <h2>Search Movies</h2>
       {movies.length > 0 && (
         <ul>
           {movies.map(({ id, title }) => (
             <li key={id}>
-              <Link to={`${id}`} state={{ from: location }}>
+              <NavItem to={`${id}`} state={{ from: location }}>
                 <p>{title}</p>
-              </Link>
+              </NavItem>
             </li>
           ))}
         </ul>
       )}
     </>
   );
+};
+
+ListSearchMovies.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
 };

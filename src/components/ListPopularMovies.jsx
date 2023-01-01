@@ -1,10 +1,10 @@
 import Notiflix from 'notiflix';
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import { Watch } from 'react-loader-spinner';
 import { axiosPopularMovies } from '../requests/axiosPopularMovies';
-
+import { NavItem, TitleTrending } from './ListMovies.Styled';
 export const ListPopularMovies = ({ state }) => {
   const [popularFilms, setPopularFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,21 +34,25 @@ export const ListPopularMovies = ({ state }) => {
           visible={true}
         />
       ) : (
-        <main>
-          <h2>Popular Movies</h2>
+        <>
+          <TitleTrending>Trending today</TitleTrending>
           {popularFilms.length > 0 && (
             <ul>
               {popularFilms.map(({ id, title }) => (
                 <li key={id}>
-                  <Link to={`movies/${id}`} state={state}>
+                  <NavItem to={`movies/${id}`} state={state}>
                     <p>{title}</p>
-                  </Link>
+                  </NavItem>
                 </li>
               ))}
             </ul>
           )}
-        </main>
+        </>
       )}
     </>
   );
+};
+
+ListPopularMovies.propTypes = {
+  state: PropTypes.object.isRequired,
 };
