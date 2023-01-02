@@ -1,14 +1,10 @@
 import Notiflix from 'notiflix';
 import { FilmInfo } from '../components/FilmInfo/FilmInfo';
 import {
-  BlockFlexOne,
-  InfoFilm,
-  BlockInfoFilm,
   NavBack,
   BlockInfoToo,
   Information,
   NavCastReviews,
-  TitleFilm,
 } from '../components/MovieDetails/MovieDetails.Styled';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
