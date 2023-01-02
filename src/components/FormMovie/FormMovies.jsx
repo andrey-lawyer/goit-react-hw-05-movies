@@ -14,7 +14,7 @@ export const FormMovies = () => {
   const handleNameChange = event => {
     setSearchName(event.currentTarget.value.toLowerCase());
   };
-
+  console.log(searchParams);
   const handleSubmit = event => {
     event.preventDefault();
 
