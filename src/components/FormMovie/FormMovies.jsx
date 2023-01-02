@@ -1,6 +1,6 @@
 import Notiflix from 'notiflix';
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useSearchParams } from 'react-router-dom';
 import {
   SearchForm,
   SearchFormButton,
@@ -8,9 +8,9 @@ import {
   SearchFormButtonLabel,
   BlockForm,
 } from './FormMovies.Styled';
-export const FormMovies = ({ onSubmit }) => {
+export const FormMovies = () => {
   const [searchName, setSearchName] = useState('');
-
+  const [searchParams, setSearchParams] = useSearchParams();
   const handleNameChange = event => {
     setSearchName(event.currentTarget.value.toLowerCase());
   };
@@ -22,8 +22,7 @@ export const FormMovies = ({ onSubmit }) => {
       Notiflix.Notify.failure(`Enter data in the search field`);
       return;
     }
-
-    onSubmit(searchName);
+    setSearchParams({ query: searchName });
     setSearchName('');
   };
   return (
@@ -43,8 +42,4 @@ export const FormMovies = ({ onSubmit }) => {
       </SearchForm>
     </BlockForm>
   );
-};
-
-FormMovies.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };

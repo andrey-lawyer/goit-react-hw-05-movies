@@ -1,9 +1,9 @@
 import Notiflix from 'notiflix';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { axiosActorsMovie } from '../requests/axiosActorsMovie';
+import { axiosActorsMovie } from '../../requests/axiosActorsMovie';
 import { GalleryCast, NameActor, ActorItem } from './Cast.Styled';
-import { Message } from './Reviews.Styled';
+import { Message } from '../Reviews/Reviews.Styled';
 
 const Cast = () => {
   const { movieId } = useParams();

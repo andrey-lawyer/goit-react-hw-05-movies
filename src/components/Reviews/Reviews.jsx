@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { axiosReviewsMovie } from '../requests/axiosReviewsMovie';
+import { axiosReviewsMovie } from '../../requests/axiosReviewsMovie';
 import {
   ReviewsList,
   ReviewsItem,

@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+import { FilmInfo } from '../components/FilmInfo/FilmInfo';
 import {
   BlockFlexOne,
   InfoFilm,
@@ -8,7 +9,7 @@ import {
   Information,
   NavCastReviews,
   TitleFilm,
-} from './MovieDetails.Styled';
+} from '../components/MovieDetails/MovieDetails.Styled';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import React, { useState, useEffect, Suspense } from 'react';
@@ -17,7 +18,8 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [infoMovie, setInfoMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
   useEffect(() => {
     setIsLoading(true);
     axiosFullInfoMovie(movieId)
@@ -29,15 +31,6 @@ const MovieDetails = () => {
         Notiflix.Notify.failure('Something went wrong...');
       });
   }, [movieId]);
-  const { newGenres, title, overview, imageMovie, userScore } = infoMovie;
-  const location = useLocation();
-
-  const [locationUser, setLocationUser] = useState('/');
-  useEffect(() => {
-    if (location.state) {
-      setLocationUser(location.state.from);
-    }
-  }, [location.state]);
 
   return (
     <>
@@ -54,26 +47,20 @@ const MovieDetails = () => {
         />
       ) : (
         <main>
-          <NavBack to={locationUser}>{'\u261A'} Go Back</NavBack>
-          <BlockFlexOne>
-            <img src={imageMovie} alt={imageMovie} />
-            <BlockInfoFilm>
-              <TitleFilm>{title}</TitleFilm>
-              <InfoFilm>User Score {userScore}%</InfoFilm>
-              <h2>Overview</h2>
-              <InfoFilm>{overview}</InfoFilm>
-              <h2>Genres</h2>
-              <InfoFilm>{newGenres}</InfoFilm>
-            </BlockInfoFilm>
-          </BlockFlexOne>
+          <NavBack to={backLinkHref}>{'\u261A'} Go Back</NavBack>
+          {infoMovie && <FilmInfo infoMovie={infoMovie} />}
           <BlockInfoToo>
             <Information>Additional information</Information>
             <ul>
               <li>
-                <NavCastReviews to="cast">Cast</NavCastReviews>
+                <NavCastReviews state={{ from: backLinkHref }} to="cast">
+                  Cast
+                </NavCastReviews>
               </li>
               <li>
-                <NavCastReviews to="reviews">Reviews</NavCastReviews>
+                <NavCastReviews state={{ from: backLinkHref }} to="reviews">
+                  Reviews
+                </NavCastReviews>
               </li>
             </ul>
           </BlockInfoToo>

@@ -1,33 +1,25 @@
 import Notiflix from 'notiflix';
 import React, { useState, useEffect } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
-import { FormMovies } from './FormMovies';
+import { FormMovies } from '../components/FormMovie/FormMovies';
 import { axiosSearchMovie } from '../requests/axiosSearchMovie';
-import { ListSearchMovies } from 'components/ListSearchMovies';
+import { ListSearchMovies } from 'components/ListSearchMovie/ListSearchMovies';
 
 const Movies = () => {
-  const [searchName, setSearchName] = useState('');
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const handleFormSubmit = searchName => {
-    setSearchName(searchName);
-    setData([]);
-  };
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (!searchName) {
+    const query = searchParams.get('query');
+    if (!query) {
       return;
     }
     setIsLoading(true);
-    axiosSearchMovie(searchName)
+    axiosSearchMovie(query)
       .then(data => {
-        if (data) {
-          navigate(`/movies?query=${searchName}`, { replace: true });
-        }
         setIsLoading(false);
         if (!data.length) {
           Notiflix.Notify.failure(
@@ -40,10 +32,10 @@ const Movies = () => {
       .catch(() => {
         Notiflix.Notify.failure('Something went wrong...');
       });
-  }, [navigate, searchName]);
+  }, [searchParams]);
   return (
     <main>
-      <FormMovies onSubmit={handleFormSubmit} />
+      <FormMovies />
       {isLoading ? (
         <RotatingLines
           strokeColor="grey"
