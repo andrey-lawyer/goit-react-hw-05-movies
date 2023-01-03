@@ -1,13 +1,17 @@
-import Notiflix from 'notiflix';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+import Notiflix from 'notiflix';
+
 import { axiosActorsMovie } from '../../requests/axiosActorsMovie';
+
 import { GalleryCast, NameActor, ActorItem } from './Cast.Styled';
 import { Message } from '../Reviews/Reviews.Styled';
 
 const Cast = () => {
   const { movieId } = useParams();
   const [infoActors, setInfoActors] = useState([]);
+  
   useEffect(() => {
     axiosActorsMovie(movieId)
       .then(data => {

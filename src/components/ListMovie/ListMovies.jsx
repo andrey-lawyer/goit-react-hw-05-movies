@@ -1,8 +1,11 @@
-import { NavItem } from './ListMovies.Styled';
-import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { NavItem } from './ListMovies.Styled';
+
 export const ListMovies = ({ films }) => {
   const location = useLocation();
+
   return (
     <ul>
       {films.map(({ id, title }) => (

@@ -1,6 +1,8 @@
-import styled from 'styled-components';
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+import styled from 'styled-components';
+
 import Layout from 'components/Layout/Layout';
 import { GlobalStyle } from './styles/GlobalStyle';
 

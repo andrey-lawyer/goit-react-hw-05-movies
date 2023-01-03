@@ -1,4 +1,11 @@
+import React, { useState, useEffect, Suspense } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { ThreeDots } from 'react-loader-spinner';
+
 import Notiflix from 'notiflix';
+
+import { axiosFullInfoMovie } from '../requests/axiosFullInfoMovie';
+
 import { FilmInfo } from '../components/FilmInfo/FilmInfo';
 import {
   NavBack,
@@ -6,26 +13,24 @@ import {
   Information,
   NavCastReviews,
 } from '../components/MovieDetails/MovieDetails.Styled';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
-import { ThreeDots } from 'react-loader-spinner';
-import React, { useState, useEffect, Suspense } from 'react';
-import { axiosFullInfoMovie } from '../requests/axiosFullInfoMovie';
+
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [infoMovie, setInfoMovie] = useState({});
+  const [infoMovie, setInfoMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
   useEffect(() => {
     setIsLoading(true);
     axiosFullInfoMovie(movieId)
       .then(data => {
-        setIsLoading(false);
         setInfoMovie(data);
       })
       .catch(() => {
         Notiflix.Notify.failure('Something went wrong...');
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, [movieId]);
 
   return (

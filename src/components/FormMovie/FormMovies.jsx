@@ -1,6 +1,8 @@
-import Notiflix from 'notiflix';
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
+import Notiflix from 'notiflix';
+
 import {
   SearchForm,
   SearchFormButton,
@@ -8,13 +10,16 @@ import {
   SearchFormButtonLabel,
   BlockForm,
 } from './FormMovies.Styled';
+
 export const FormMovies = () => {
   const [searchName, setSearchName] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
+
   const handleNameChange = event => {
     setSearchName(event.currentTarget.value.toLowerCase());
   };
   console.log(searchParams);
+
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -25,6 +30,7 @@ export const FormMovies = () => {
     setSearchParams({ query: searchName });
     setSearchName('');
   };
+
   return (
     <BlockForm>
       <SearchForm onSubmit={handleSubmit}>

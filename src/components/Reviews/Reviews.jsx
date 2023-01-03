@@ -1,16 +1,21 @@
-import Notiflix from 'notiflix';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+import Notiflix from 'notiflix';
+
 import { axiosReviewsMovie } from '../../requests/axiosReviewsMovie';
+
 import {
   ReviewsList,
   ReviewsItem,
   AuthorPost,
   Message,
 } from './Reviews.Styled';
+
 const Reviews = () => {
   const { movieId } = useParams();
   const [infoReviews, setInfoReviews] = useState({});
+
   useEffect(() => {
     axiosReviewsMovie(movieId)
       .then(data => {

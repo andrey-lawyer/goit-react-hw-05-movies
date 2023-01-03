@@ -1,10 +1,12 @@
-import Notiflix from 'notiflix';
 import React, { useState, useEffect } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import { useSearchParams } from 'react-router-dom';
 
-import { FormMovies } from '../components/FormMovie/FormMovies';
+import Notiflix from 'notiflix';
+
 import { axiosSearchMovie } from '../requests/axiosSearchMovie';
+
+import { FormMovies } from '../components/FormMovie/FormMovies';
 import { ListSearchMovies } from 'components/ListSearchMovie/ListSearchMovies';
 
 const Movies = () => {
@@ -14,13 +16,13 @@ const Movies = () => {
 
   useEffect(() => {
     const query = searchParams.get('query');
+
     if (!query) {
       return;
     }
     setIsLoading(true);
     axiosSearchMovie(query)
       .then(data => {
-        setIsLoading(false);
         if (!data.length) {
           Notiflix.Notify.failure(
             'Sorry, there are no images matching your search query.Please try again.'
@@ -31,8 +33,10 @@ const Movies = () => {
       })
       .catch(() => {
         Notiflix.Notify.failure('Something went wrong...');
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, [searchParams]);
+
   return (
     <main>
       <FormMovies />

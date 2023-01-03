@@ -1,23 +1,27 @@
-import Notiflix from 'notiflix';
 import React, { useState, useEffect } from 'react';
 import { Watch } from 'react-loader-spinner';
+
+import Notiflix from 'notiflix';
+
 import { axiosPopularMovies } from '../requests/axiosPopularMovies';
-import { TitleTrending } from '../components/ListMovie/ListMovies.Styled';
+
 import { ListMovies } from '../components/ListMovie/ListMovies';
+import { TitleTrending } from '../components/ListMovie/ListMovies.Styled';
 
 const Home = () => {
   const [popularFilms, setPopularFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     setIsLoading(true);
     axiosPopularMovies()
       .then(data => {
-        setIsLoading(false);
         setPopularFilms(data);
       })
       .catch(() => {
         Notiflix.Notify.failure('Something went wrong...');
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (

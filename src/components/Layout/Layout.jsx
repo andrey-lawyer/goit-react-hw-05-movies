@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+
 import { NavItem, Header } from './Layout.styled';
+
 const Layout = () => {
   return (
     <>

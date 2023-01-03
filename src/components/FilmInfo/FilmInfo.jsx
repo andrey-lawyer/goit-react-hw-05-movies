@@ -5,6 +5,7 @@ import {
   BlockInfoFilm,
   TitleFilm,
 } from '../MovieDetails/MovieDetails.Styled';
+
 export const FilmInfo = ({
   infoMovie: { newGenres, title, overview, imageMovie, userScore },
 }) => {
